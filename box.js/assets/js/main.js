@@ -1,37 +1,52 @@
-let box=document.querySelector(".box");
-let fruit=document.querySelector(".fruit");
-let vegetables=document.querySelector(".vegetables");
-let ap=document.querySelector(".ap");
-let st=document.querySelector(".st");
-let pi=document.querySelector(".pi");
-let to=document.querySelector(".to");
-let so=document.querySelector(".so");
-let bi=document.querySelector(".bi");
+let ap=document.getElementById("ap");
+let st=document.getElementById("st");
+let pi=document.getElementById("pi");
+let to=document.getElementById("to");
+let so=document.getElementById("so");
+let ke=document.getElementById("ke");
+let dragItem=null;
 
+ap.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("fruitId",this.id);
+})
+st.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("fruitId",this.id);
+})
+pi.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("fruitId",this.id);
+})
+document.querySelectorAll(".fruit").forEach(area=>{
+    area.addEventListener("dragover",function(e){
+        e.preventDefault();
+    })
+})
+document.querySelectorAll(".fruit").forEach(area=>{
+    area.addEventListener("drop",function(e){
+        let data = e.dataTransfer.getData("fruitId");
+        this.appendChild(document.getElementById(data));
+    })
+})
 
-fruit.ondragover=function(e){
-    e.preventDefault();
-}
-fruit.ondrop=function(){
-    fruit.append(ap)
-}
-fruit.ondragover=function(e){
-    e.preventDefault();
-}
-fruit.ondrop=function(){
-    fruit.append(pi)
-}
-fruit.ondragover=function(e){
-    e.preventDefault();
-}
-fruit.ondrop=function(){
-    fruit.append(st)
-}
-
-
-vegetables.ondragover=function(e){
-    e.preventDefault();
-}
-vegetables.ondrop=function(){
-    vegetables.append(veg)
+to.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("vegetablesId",this.id);
+})
+so.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("vegetablesId",this.id);
+})
+ke.addEventListener("dragstart",function(e){
+    e.dataTransfer.setData("vegetablesId",this.id);
+})
+document.querySelectorAll(".vegetables").forEach(area=>{
+    area.addEventListener("dragover",function(e){
+        e.preventDefault();
+    })
+})
+document.querySelectorAll(".vegetables").forEach(area=>{
+    area.addEventListener("drop",function(e){
+        let data = e.dataTransfer.getData("vegetablesId");
+        this.appendChild(document.getElementById(data));
+    })
+})
+function Drop(){
+    this.append(dragItem)
 }
